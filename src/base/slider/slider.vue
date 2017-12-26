@@ -120,6 +120,10 @@ export default {
         this.slider.goToPage(pageIndex, 0, 400)
       }, this.interval)
     }
+  },
+  // 当切换页面时  手动销毁计时器
+  destroyed() {
+    clearTimeout(this.timer)
   }
 }
 </script>

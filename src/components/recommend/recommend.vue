@@ -20,7 +20,7 @@
 
 <script type="text/ecmascript-6">
 import Slider from 'base/slider/slider'
-import { getRecommend } from 'api/recommend'
+import { getRecommend, getDiscList } from 'api/recommend'
 import { ERR_OK } from 'api/config'
 
 export default {
@@ -31,6 +31,7 @@ export default {
   },
   created() {
     this._getRecommend()
+    this._getDiscList()
   },
   methods: {
     // '_'开头的为私有的方法，为不在created中出现大量的代码，将其封装在methods中
@@ -38,6 +39,12 @@ export default {
       getRecommend().then(res => {
         if (res.code === ERR_OK) {
           this.recommends = res.data.slider
+        }
+      })
+    },
+    _getDiscList() {
+      getDiscList().then(res => {
+        if (res.code === ERR_OK) {
         }
       })
     }

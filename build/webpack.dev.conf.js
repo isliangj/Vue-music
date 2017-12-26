@@ -1,4 +1,5 @@
-'use strict'
+  'use strict'
+
 const utils = require('./utils')
 const webpack = require('webpack')
 const config = require('../config')
@@ -7,6 +8,16 @@ const baseWebpackConfig = require('./webpack.base.conf')
 const HtmlWebpackPlugin = require('html-webpack-plugin')
 const FriendlyErrorsPlugin = require('friendly-errors-webpack-plugin')
 const portfinder = require('portfinder')
+
+const axios = require('axios')
+const express = require('express')
+const app = express()
+const apiRoutes = express.Router()
+
+ 
+
+const HOST = process.env.HOST
+const PORT = process.env.PORT && Number(process.env.PORT)
 
 const devWebpackConfig = merge(baseWebpackConfig, {
   module: {
@@ -21,19 +32,37 @@ const devWebpackConfig = merge(baseWebpackConfig, {
     historyApiFallback: true,
     hot: true,
     compress: true,
-    host: process.env.HOST || config.dev.host,
-    port: process.env.PORT || config.dev.port,
+    host: HOST || config.dev.host,
+    port: PORT || config.dev.port,
     open: config.dev.autoOpenBrowser,
-    overlay: config.dev.errorOverlay ? {
-      warnings: false,
-      errors: true,
-    } : false,
+    overlay: config.dev.errorOverlay
+      ? { warnings: false, errors: true }
+      : false,
     publicPath: config.dev.assetsPublicPath,
     proxy: config.dev.proxyTable,
     quiet: true, // necessary for FriendlyErrorsPlugin
     watchOptions: {
       poll: config.dev.poll,
-    }
+    },
+    before(apiRoutes){
+      
+          apiRoutes.get('/api/getDiscList', function (req, res) {
+              var url = 'https://c.y.qq.com/splcloud/fcgi-bin/fcg_get_diss_by_tag.fcg'
+              axios.get(url, {
+                  headers: {
+                      referer: 'https://y.qq.com/portal/playlist.html',
+                      host: 'c.y.qq.com'
+                  },
+                  params: req.query
+              }).then((response) => {
+                  res.json(response.data)
+              
+          }).
+              catch((e) => {console.log(e)
+          })
+          })
+         app.use('/api', apiRoutes)
+      }
   },
   plugins: [
     new webpack.DefinePlugin({
@@ -65,7 +94,7 @@ module.exports = new Promise((resolve, reject) => {
       // Add FriendlyErrorsPlugin
       devWebpackConfig.plugins.push(new FriendlyErrorsPlugin({
         compilationSuccessInfo: {
-          messages: [`Your application is running here: http://${config.dev.host}:${port}`],
+          messages: [`Your application is running here: http://${devWebpackConfig.devServer.host}:${port}`],
         },
         onErrors: config.dev.notifyOnErrors
         ? utils.createNotifierCallback()
