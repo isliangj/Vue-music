@@ -17,7 +17,8 @@
     "fastclick": "^1.0.6",
     "better-scroll": "^0.1.15",
     "jsonp": "^0.2.1",
-    "axios": "^0.17.1"
+    "axios": "^0.17.1",
+    "vue-lazyload": "^1.1.4"
   },
   "devDependencies": {
     "autoprefixer": "^7.1.2",
@@ -70,5 +71,9 @@
     "node": ">= 4.0.0",
     "npm": ">= 3.0.0"
   },
-  "browserslist": ["> 1%", "last 2 versions", "not ie <= 8"]
+  "browserslist": [
+    "> 1%",
+    "last 2 versions",
+    "not ie <= 8"
+  ]
 }
