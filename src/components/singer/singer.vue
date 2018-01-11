@@ -5,11 +5,12 @@
   </div>
 </template>
 
-<script>
+<script  type="text/ecmascript-6">
 import ListView from 'base/listview/listview'
 import { getSingerList } from 'api/singer'
 import { ERR_OK } from 'api/config'
 import Singer from 'common/js/singer'
+import { mapMutations } from 'vuex'
 
 const HOT_SINGER_LEN = 10
 const HOT_NAME = '热门'
@@ -24,11 +25,7 @@ export default {
     this._getSingerList()
   },
   methods: {
-    handlePlaylist(playlist) {
-      const bottom = playlist.length > 0 ? '60px' : ''
-      this.$refs.singer.style.bottom = bottom
-      this.$refs.list.refresh()
-    },
+    // 获取跳转路由的id
     selectSinger(singer) {
       this.$router.push({
         path: `/singer/${singer.id}`
@@ -87,7 +84,10 @@ export default {
         return a.title.charCodeAt(0) - b.title.charCodeAt(0)
       })
       return hot.concat(ret)
-    }
+    },
+    ...mapMutations({
+      setSinger: 'SET_SINGER'
+    })
   },
   components: {
     ListView

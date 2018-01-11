@@ -75,6 +75,7 @@ export default {
     this.listHeight = []
   },
   methods: {
+    // 路由的跳转，将item派发出去
     selectItem(item) {
       this.$emit('select', item)
     },
