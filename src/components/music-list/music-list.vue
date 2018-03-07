@@ -88,6 +88,7 @@ export default {
       this.$router.back()
     },
     selectItem(item, index) {
+      // 调用 actions 中的 selectPlay
       this.selectPlay({
         list: this.songs,
         index

@@ -1,3 +1,4 @@
+// 洗牌函数
 function getRandomInt(min, max) {
   return Math.floor(Math.random() * (max - min + 1) + min)
 }
@@ -13,15 +14,15 @@ export function shuffle(arr) {
   return _arr
 }
 
-export function debounce(func, delay) {
-  let timer
+// export function debounce(func, delay) {
+//   let timer
 
-  return function(...args) {
-    if (timer) {
-      clearTimeout(timer)
-    }
-    timer = setTimeout(() => {
-      func.apply(this, args)
-    }, delay)
-  }
-}
+//   return function(...args) {
+//     if (timer) {
+//       clearTimeout(timer)
+//     }
+//     timer = setTimeout(() => {
+//       func.apply(this, args)
+//     }, delay)
+//   }
+// }

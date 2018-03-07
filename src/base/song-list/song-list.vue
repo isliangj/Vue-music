@@ -27,6 +27,7 @@ export default {
     }
   },
   methods: {
+    // 派发点击事件的索引
     selectItem(item, index) {
       this.$emit('select', item, index)
     },

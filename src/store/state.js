@@ -1,5 +1,6 @@
 import { playMode } from 'common/js/config'
 
+// 定义一些底层的数据
 const state = {
   singer: {},
   playing: false,
@@ -8,7 +9,8 @@ const state = {
   sequenceList: [],
   mode: playMode.sequence,
   currentIndex: -1,
-  disc: {}
+  disc: {},
+  topList: {}
 }
 
 export default state

@@ -1,3 +1,4 @@
+// 对数据进行映射 可以是函数 类似于计算属性
 export const singer = state => state.singer
 
 export const playing = state => state.playing
@@ -17,3 +18,5 @@ export const currentSong = state => {
 }
 
 export const disc = state => state.disc
+
+export const topList = state => state.topList
