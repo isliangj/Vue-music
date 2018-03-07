@@ -1,4 +1,5 @@
 import { playMode } from 'common/js/config'
+import { loadSearch, loadPlay, loadFavorite } from 'common/js/cache'
 
 // 定义一些底层的数据
 const state = {
@@ -10,7 +11,10 @@ const state = {
   mode: playMode.sequence,
   currentIndex: -1,
   disc: {},
-  topList: {}
+  topList: {},
+  searchHistory: loadSearch(),
+  playHistory: loadPlay(),
+  favoriteList: loadFavorite()
 }
 
 export default state

@@ -6,7 +6,6 @@
                 @leave="leave"
                 @after-leave="afterLeave"
     >
-      <!-- 全屏的 player -->
       <div class="normal-player" v-show="fullScreen">
         <div class="background">
           <img width="100%" height="100%" :src="currentSong.image">
@@ -64,7 +63,7 @@
               <i @click="prev" class="icon-prev"></i>
             </div>
             <div class="icon i-center" :class="disableCls">
-              <i @click.stop="togglePlaying" :class="playIcon"></i>
+              <i @click="togglePlaying" :class="playIcon"></i>
             </div>
             <div class="icon i-right" :class="disableCls">
               <i @click="next" class="icon-next"></i>
@@ -75,10 +74,8 @@
           </div>
         </div>
       </div>
-      <!-- 全屏 player 结束 -->
     </transition>
     <transition name="mini">
-      <!-- mini的 player -->
       <div class="mini-player" v-show="!fullScreen" @click="open">
         <div class="icon">
           <img :class="cdCls" width="40" height="40" :src="currentSong.image">
@@ -96,7 +93,6 @@
           <i class="icon-playlist"></i>
         </div>
       </div>
-      <!-- mini 的 player 结束 -->
     </transition>
     <playlist ref="playlist"></playlist>
     <audio ref="audio" :src="currentSong.url" @play="ready" @error="error" @timeupdate="updateTime"
